@@ -95,9 +95,13 @@ export function Hero() {
             <Button size="lg" onClick={() => (window.location.hash = "projects")}>
               View projects <ArrowRight className="h-4 w-4" />
             </Button>
-            <Button size="lg" variant="secondary">
+            
+               <a href="/resume.pdf"
+              download="Aysar-Dalgamouni-Resume.pdf"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-surface px-7 text-base font-medium text-ink transition-colors hover:border-accent/50 hover:text-accent focus-ring"
+            >
               <Download className="h-4 w-4" /> Résumé
-            </Button>
+            </a>
           </motion.div>
 
           <motion.div variants={item} className="mt-8 flex items-center gap-4 text-ink-soft">

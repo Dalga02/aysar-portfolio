@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Github, Clock, Sparkles } from "lucide-react";
+import { ArrowUpRight, Github, Sparkles } from "lucide-react";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { projects, projectCategories, type Project } from "@/data/projects";
 import { cn } from "@/lib/utils";
@@ -78,17 +78,18 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <span className="absolute left-4 top-4 rounded-full bg-canvas/70 px-2.5 py-1 text-[11px] font-medium text-ink backdrop-blur">
           {project.category}
         </span>
-        {isComingSoon && (
-          <span className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-accent/90 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">
-            <Clock className="h-3 w-3" />
-            Coming soon
-          </span>
-        )}
-        {isInProgress && (
-          <span className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-accent/90 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">
-            <Sparkles className="h-3 w-3" />
-            In progress
-          </span>
+        {(isComingSoon || isInProgress) && (
+          <div className="absolute right-4 top-4 flex flex-col items-end gap-1.5">
+            <span className="flex items-center gap-1.5 rounded-full bg-accent/90 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">
+              <Sparkles className="h-3 w-3" />
+              In Development
+            </span>
+            {typeof project.progress === "number" && (
+              <span className="rounded-full bg-canvas/70 px-2.5 py-1 text-[11px] font-medium text-ink backdrop-blur">
+                {project.progress}% complete
+              </span>
+            )}
+          </div>
         )}
       </div>
 

@@ -8,6 +8,7 @@ export type Project = {
   demo?: string;
   featured?: boolean;
   status?: "live" | "coming-soon" | "in-progress";
+  progress?: number;
 };
 
 export const projects: Project[] = [
@@ -18,6 +19,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "Supabase", "Tailwind", "DnD Kit"],
     category: "Full Stack",
     status: "coming-soon",
+    progress: 35,
   },
   {
     title: "DevFinder",
@@ -26,6 +28,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "GitHub API", "Recharts", "Tailwind"],
     category: "Frontend",
     status: "coming-soon",
+    progress: 20,
   },
   {
     title: "Snippet Vault",
@@ -34,6 +37,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "Prisma", "PostgreSQL", "Shiki", "Tailwind"],
     category: "Full Stack",
     status: "coming-soon",
+    progress: 10,
   },
 ];
 
