@@ -4,14 +4,17 @@ import { motion } from "framer-motion";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Reveal } from "@/components/effects/Reveal";
 import { skillGroups } from "@/data/skills";
+import { useLanguage } from "@/lib/language-context";
 
 export function Skills() {
+  const { t } = useLanguage();
+
   return (
     <section id="skills" className="container-x py-24 md:py-32">
       <SectionTitle
-        eyebrow="Skills"
-        title="Depth where it matters, breadth to move fast."
-        description="A working stack shaped by shipping. I go deep on the layers I own end to end, and stay comfortable across the rest."
+        eyebrow={t.skills.eyebrow}
+        title={t.skills.title}
+        description={t.skills.description}
       />
 
       <div className="mt-16 grid gap-6 md:grid-cols-3">
@@ -19,7 +22,9 @@ export function Skills() {
           <Reveal key={group.title} delay={gi * 0.05}>
             <div className="glass noise flex h-full flex-col gap-6 rounded-3xl p-7">
               <div className="flex items-center justify-between">
-                <h3 className="font-display text-2xl">{group.title}</h3>
+                <h3 className="font-display text-2xl">
+                  {t.skills.groupTitles[gi] ?? group.title}
+                </h3>
                 <span className="rounded-full bg-muted/70 px-2.5 py-1 font-mono text-[11px] text-ink-soft">
                   0{gi + 1}
                 </span>
@@ -44,7 +49,7 @@ export function Skills() {
                           delay: 0.15 + i * 0.05,
                           ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="absolute inset-y-0 left-0 rounded-full"
+                        className="absolute inset-y-0 start-0 rounded-full"
                         style={{
                           background:
                             "linear-gradient(90deg, hsl(var(--accent)), hsl(var(--accent-soft)))",

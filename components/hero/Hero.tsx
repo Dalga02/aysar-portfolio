@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download, Github, Linkedin, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { site } from "@/data/site";
+import { useLanguage } from "@/lib/language-context";
 import { Button } from "@/components/ui/Button";
 import { GradientText } from "@/components/ui/GradientText";
 import { HeroBackground } from "./HeroBackground";
@@ -16,7 +17,13 @@ function useTyped(words: readonly string[], speed = 90, pause = 1400) {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    const current = words[wordIdx];
+    setWordIdx(0);
+    setDisplay("");
+    setDeleting(false);
+  }, [words]);
+
+  useEffect(() => {
+    const current = words[wordIdx] ?? "";
     if (!deleting && display === current) {
       const t = setTimeout(() => setDeleting(true), pause);
       return () => clearTimeout(t);
@@ -41,7 +48,8 @@ function useTyped(words: readonly string[], speed = 90, pause = 1400) {
 }
 
 export function Hero() {
-  const typed = useTyped(site.typing);
+  const { t } = useLanguage();
+  const typed = useTyped(t.hero.typing);
   const stagger = {
     hidden: { opacity: 0 },
     show: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
@@ -64,7 +72,7 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
               </span>
-              Available for new work
+              {t.hero.badge}
             </span>
           </motion.div>
 
@@ -72,17 +80,15 @@ export function Hero() {
             variants={item}
             className="mt-6 font-display text-[clamp(2.6rem,7vw,5.25rem)] font-normal leading-[0.98] tracking-tight"
           >
-            Crafting digital
+            {t.hero.titleLine1}
             <br />
-            experiences
+            {t.hero.titleLine2}
             <br />
-            that feel <GradientText>alive.</GradientText>
+            {t.hero.titleLine3} <GradientText>{t.hero.titleHighlight}</GradientText>
           </motion.h1>
 
           <motion.p variants={item} className="mt-6 max-w-lg text-base leading-relaxed text-ink-soft md:text-lg">
-            Hey, I'm <span className="text-ink">{site.name}</span>. I build fast,
-            thoughtful web apps end to end — from architecture and API to the
-            last pixel of the interface.
+            {t.hero.subtitlePrefix} <span className="text-ink">{site.name}</span>. {t.hero.subtitle}
           </motion.p>
 
           <motion.div variants={item} className="mt-5 font-mono text-sm text-ink-soft">
@@ -93,14 +99,14 @@ export function Hero() {
 
           <motion.div variants={item} className="mt-8 flex flex-wrap items-center gap-3">
             <Button size="lg" onClick={() => (window.location.hash = "projects")}>
-              View projects <ArrowRight className="h-4 w-4" />
+              {t.hero.viewProjects} <ArrowRight className="h-4 w-4" />
             </Button>
-            
-               <a href="/resume.pdf"
+            <a
+              href="/resume.pdf"
               download="Aysar-Dalgamouni-Resume.pdf"
               className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-surface px-7 text-base font-medium text-ink transition-colors hover:border-accent/50 hover:text-accent focus-ring"
             >
-              <Download className="h-4 w-4" /> Résumé
+              <Download className="h-4 w-4" /> {t.hero.resume}
             </a>
           </motion.div>
 
@@ -115,7 +121,7 @@ export function Hero() {
               <MessageCircle className="h-5 w-5" />
             </a>
             <div className="mx-3 h-4 w-px bg-border" />
-            <span className="text-sm">{site.location}</span>
+            <span className="text-sm">{t.hero.location}</span>
           </motion.div>
         </motion.div>
 

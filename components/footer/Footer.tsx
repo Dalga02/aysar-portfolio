@@ -3,8 +3,11 @@
 import { ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
 import { site } from "@/data/site";
+import { useLanguage } from "@/lib/language-context";
 
 export function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="relative mt-16 border-t border-border/60">
       <div className="container-x flex flex-col items-center justify-between gap-6 py-10 md:flex-row">
@@ -13,13 +16,13 @@ export function Footer() {
             A
           </span>
           <span className="text-sm text-ink-soft">
-            © {new Date().getFullYear()} {site.name}. Crafted with care.
+            © {new Date().getFullYear()} {site.name}. {t.footer.crafted}
           </span>
         </div>
 
         <div className="flex items-center gap-4 text-xs text-ink-soft">
           <span>
-            Built with{" "}
+            {t.footer.builtWith}{" "}
             <a href="https://nextjs.org" className="hover:text-ink">
               Next.js
             </a>
@@ -27,7 +30,7 @@ export function Footer() {
             <a href="https://www.framer.com/motion/" className="hover:text-ink">
               Framer Motion
             </a>
-            , and{" "}
+            , {t.footer.and}{" "}
             <a href="https://tailwindcss.com" className="hover:text-ink">
               Tailwind
             </a>

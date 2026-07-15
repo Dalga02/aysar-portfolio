@@ -67,7 +67,7 @@ export function HeroIllustration() {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
-        className="glass absolute bottom-4 left-4 rounded-xl px-3 py-2 text-xs"
+        className="glass absolute bottom-4 start-4 rounded-xl px-3 py-2 text-xs"
       >
         ☕ deep focus
       </motion.div>
@@ -77,7 +77,7 @@ export function HeroIllustration() {
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.7 }}
-        className="glass absolute bottom-4 right-4 rounded-xl px-3 py-2 font-mono text-[11px]"
+        className="glass absolute bottom-4 end-4 rounded-xl px-3 py-2 font-mono text-[11px]"
       >
         ⌘K
       </motion.div>

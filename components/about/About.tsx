@@ -7,21 +7,17 @@ import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { Reveal } from "@/components/effects/Reveal";
 import { techIcons } from "@/data/skills";
 import { site } from "@/data/site";
-
-const stats = [
-  { value: 1, suffix: "+", label: "Years shipping" },
-  { value: 10, suffix: "+", label: "Projects delivered" },
-  { value: 5, suffix: "+", label: "Happy clients" },
-  { value: 100, suffix: "%", label: "Care per pixel" },
-];
+import { useLanguage } from "@/lib/language-context";
 
 export function About() {
+  const { t } = useLanguage();
+
   return (
     <section id="about" className="container-x py-24 md:py-32">
       <SectionTitle
-        eyebrow="About"
-        title="Engineer who cares about the last 10%."
-        description="I've spent the last few years building products that need to work well on a phone in a village and a monitor in a boardroom. I like small teams, careful choices, and code that will read well a year from now."
+        eyebrow={t.about.eyebrow}
+        title={t.about.title}
+        description={t.about.description}
       />
 
       <div className="mt-16 grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
@@ -58,36 +54,27 @@ export function About() {
                   {site.name}
                 </div>
                 <div className="text-sm text-ink-soft">
-                  {site.role} · {site.location}
+                  {site.role} · {t.hero.location}
                 </div>
               </div>
             </div>
 
             <p className="text-lg leading-relaxed text-ink-soft">
-              Based in Amman, I collaborate with founders and product teams to
-              ship interfaces that are quick, considered, and honest. I care
-              about the tiny frictions — the hover you didn't notice was
-              missing, the empty state that told you what to do, the load that
-              never happened.
+              {t.about.bio1}
             </p>
-            <p className="leading-relaxed text-ink-soft">
-              My default stack is Next.js, TypeScript, Tailwind, and Postgres,
-              but the tools follow the problem. When a project needs a
-              different shape, I pick the boring one that will still make sense
-              in three years.
-            </p>
+            <p className="leading-relaxed text-ink-soft">{t.about.bio2}</p>
 
             <div>
               <div className="text-xs uppercase tracking-[0.14em] text-ink-soft">
-                Tech I reach for
+                {t.about.techLabel}
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
-                {techIcons.map((t) => (
+                {techIcons.map((tech) => (
                   <span
-                    key={t}
+                    key={tech}
                     className="rounded-full border border-border/70 bg-canvas/60 px-3 py-1 text-sm text-ink-soft"
                   >
-                    {t}
+                    {tech}
                   </span>
                 ))}
               </div>
@@ -97,7 +84,7 @@ export function About() {
 
         <Reveal delay={0.1}>
           <div className="grid grid-cols-2 gap-4">
-            {stats.map((s) => (
+            {t.about.stats.map((s) => (
               <div
                 key={s.label}
                 className="glass noise flex flex-col gap-2 rounded-2xl p-6"

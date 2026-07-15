@@ -4,9 +4,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { timeline } from "@/data/timeline";
-import { cn } from "@/lib/utils";
+import { useLanguage } from "@/lib/language-context";
 
 export function Timeline() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -17,18 +18,18 @@ export function Timeline() {
   return (
     <section id="experience" className="container-x py-24 md:py-32">
       <SectionTitle
-        eyebrow="Experience"
-        title="A short, honest timeline."
-        description="How I got here — the milestones that shaped what I care about."
+        eyebrow={t.timeline.eyebrow}
+        title={t.timeline.title}
+        description={t.timeline.description}
       />
 
       <div ref={ref} className="relative mx-auto mt-16 max-w-3xl">
         {/* Base line */}
-        <div className="absolute inset-y-0 left-4 w-px bg-border md:left-1/2 md:-translate-x-1/2" />
+        <div className="absolute inset-y-0 start-4 w-px bg-border md:start-1/2 md:-translate-x-1/2" />
         {/* Animated line */}
         <motion.div
           style={{ height }}
-          className="absolute top-0 left-4 w-px origin-top md:left-1/2 md:-translate-x-1/2"
+          className="absolute top-0 start-4 w-px origin-top md:start-1/2 md:-translate-x-1/2"
         >
           <div
             className="h-full w-full"
@@ -41,11 +42,11 @@ export function Timeline() {
         </motion.div>
 
         <ul className="flex flex-col gap-14">
-          {timeline.map((item, i) => {
+          {t.timeline.items.map((item, i) => {
             const isLeft = i % 2 === 0;
             return (
               <motion.li
-                key={`${item.year}-${item.title}`}
+                key={`${item.title}-${i}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -53,17 +54,18 @@ export function Timeline() {
                 className="relative grid grid-cols-[32px_1fr] gap-6 md:grid-cols-2"
               >
                 {/* Dot */}
-                <span className="absolute left-4 top-6 -ml-2 h-4 w-4 rounded-full border-2 border-canvas bg-accent shadow-[0_0_0_4px_hsl(var(--accent)/0.25)] md:left-1/2 md:-translate-x-1/2" />
+                <span className="absolute start-4 top-6 -ms-2 h-4 w-4 rounded-full border-2 border-canvas bg-accent shadow-[0_0_0_4px_hsl(var(--accent)/0.25)] md:start-1/2 md:-translate-x-1/2" />
 
                 <div
-                  className={cn(
-                    "col-start-2 md:col-span-1",
-                    isLeft ? "md:pr-12 md:text-right" : "md:col-start-2 md:pl-12"
-                  )}
+                  className={
+                    isLeft
+                      ? "col-start-2 md:col-span-1 md:pe-12 md:text-end"
+                      : "col-start-2 md:col-span-1 md:col-start-2 md:ps-12"
+                  }
                 >
                   <div className="glass noise rounded-2xl p-6">
                     <span className="font-mono text-xs uppercase tracking-[0.12em] text-accent">
-                      {item.year}
+                      {timeline[i]?.year}
                     </span>
                     <h3 className="mt-2 font-display text-2xl leading-tight">
                       {item.title}

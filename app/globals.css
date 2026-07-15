@@ -46,6 +46,21 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
+  /* Arabic font + heading fallback (Instrument Serif has no Arabic glyphs) */
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic), var(--font-sans), sans-serif;
+  }
+
+  html[dir="rtl"] .font-display {
+    font-family: var(--font-arabic), var(--font-sans), sans-serif;
+    font-weight: 700;
+    letter-spacing: normal;
+  }
+
+  html[dir="rtl"] .font-mono {
+    font-family: var(--font-arabic), var(--font-mono), monospace;
+  }
+
   /* Selection */
   ::selection {
     background: hsl(var(--accent) / 0.28);

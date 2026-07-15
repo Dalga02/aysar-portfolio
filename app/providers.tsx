@@ -3,6 +3,7 @@
 import { ThemeProvider } from "next-themes";
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { LanguageProvider } from "@/lib/language-context";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -31,7 +32,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange={false}
     >
-      {children}
+      <LanguageProvider>{children}</LanguageProvider>
     </ThemeProvider>
   );
 }

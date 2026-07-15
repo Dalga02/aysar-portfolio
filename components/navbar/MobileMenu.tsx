@@ -2,14 +2,24 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { site } from "@/data/site";
+import { useLanguage } from "@/lib/language-context";
+import { LanguageToggle } from "./LanguageToggle";
+import { ThemeToggle } from "./ThemeToggle";
+
+interface NavItem {
+  label: string;
+  href: string;
+}
 
 interface Props {
   open: boolean;
   onClose: () => void;
+  navItems: NavItem[];
 }
 
-export function MobileMenu({ open, onClose }: Props) {
+export function MobileMenu({ open, onClose, navItems }: Props) {
+  const { t } = useLanguage();
+
   return (
     <AnimatePresence>
       {open && (
@@ -20,17 +30,21 @@ export function MobileMenu({ open, onClose }: Props) {
           className="fixed inset-0 z-[55] bg-canvas/95 backdrop-blur-xl md:hidden"
         >
           <div className="container-x flex items-center justify-between py-6">
-            <span className="font-display text-2xl">{site.shortName}</span>
-            <button
-              onClick={onClose}
-              aria-label="Close menu"
-              className="focus-ring grid h-10 w-10 place-items-center rounded-full border border-border"
-            >
-              <X className="h-5 w-5" />
-            </button>
+            <span className="font-display text-2xl">{t.brand.shortName}</span>
+            <div className="flex items-center gap-2">
+              <LanguageToggle />
+              <ThemeToggle />
+              <button
+                onClick={onClose}
+                aria-label="Close menu"
+                className="focus-ring grid h-10 w-10 place-items-center rounded-full border border-border"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
           </div>
           <nav className="container-x mt-10 flex flex-col gap-6">
-            {site.nav.map((item, i) => (
+            {navItems.map((item, i) => (
               <motion.a
                 key={item.href}
                 href={item.href}

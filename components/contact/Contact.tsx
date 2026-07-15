@@ -21,20 +21,20 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Reveal } from "@/components/effects/Reveal";
 import { Button } from "@/components/ui/Button";
 import { site } from "@/data/site";
+import { useLanguage } from "@/lib/language-context";
 
-const schema = z.object({
-  name: z.string().min(2, "Name is a bit short"),
-  email: z.string().email("That email doesn't look right"),
-  message: z.string().min(10, "Tell me a little more (10+ characters)"),
-});
-
-type FormValues = z.infer<typeof schema>;
-
-// Access key comes from Web3Forms: https://web3forms.com
-// Add NEXT_PUBLIC_WEB3FORMS_KEY to a .env.local file at the project root.
 const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
 
 export function Contact() {
+  const { t } = useLanguage();
+
+  const schema = z.object({
+    name: z.string().min(2, t.contact.errors.name),
+    email: z.string().email(t.contact.errors.email),
+    message: z.string().min(10, t.contact.errors.message),
+  });
+  type FormValues = z.infer<typeof schema>;
+
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
@@ -54,9 +54,7 @@ export function Contact() {
 
     if (!WEB3FORMS_KEY) {
       setStatus("error");
-      setErrorMsg(
-        "Contact form isn't configured yet. Set NEXT_PUBLIC_WEB3FORMS_KEY in .env.local"
-      );
+      setErrorMsg(t.contact.errors.notConfigured);
       return;
     }
 
@@ -87,11 +85,11 @@ export function Contact() {
         setTimeout(() => setStatus("idle"), 4000);
       } else {
         setStatus("error");
-        setErrorMsg(json.message || "Something went wrong. Try again?");
+        setErrorMsg(json.message || t.contact.errors.generic);
       }
     } catch {
       setStatus("error");
-      setErrorMsg("Couldn't reach the server. Check your connection.");
+      setErrorMsg(t.contact.errors.network);
     }
   };
 
@@ -104,9 +102,9 @@ export function Contact() {
   return (
     <section id="contact" className="container-x py-24 md:py-32">
       <SectionTitle
-        eyebrow="Contact"
-        title="Have something you'd like to build?"
-        description="Full projects, sprints, or just a good question — the inbox is open."
+        eyebrow={t.contact.eyebrow}
+        title={t.contact.title}
+        description={t.contact.description}
       />
 
       <div className="mt-16 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
@@ -118,13 +116,13 @@ export function Contact() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
               </span>
-              Currently available
+              {t.contact.available}
             </div>
 
             <div className="space-y-5">
               <button
                 onClick={copyEmail}
-                className="focus-ring group flex w-full items-center justify-between gap-3 rounded-2xl border border-border/60 bg-canvas/50 p-4 text-left transition-colors hover:border-accent/40"
+                className="focus-ring group flex w-full items-center justify-between gap-3 rounded-2xl border border-border/60 bg-canvas/50 p-4 text-start transition-colors hover:border-accent/40"
               >
                 <div className="flex items-center gap-3">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-muted/70 text-accent">
@@ -132,7 +130,7 @@ export function Contact() {
                   </span>
                   <div>
                     <div className="text-xs uppercase tracking-[0.12em] text-ink-soft">
-                      Email
+                      {t.contact.emailLabel}
                     </div>
                     <div className="font-mono text-sm">{site.email}</div>
                   </div>
@@ -146,7 +144,7 @@ export function Contact() {
                       exit={{ opacity: 0, scale: 0.6 }}
                       className="flex items-center gap-1 text-xs text-accent"
                     >
-                      <Check className="h-3.5 w-3.5" /> Copied
+                      <Check className="h-3.5 w-3.5" /> {t.contact.copied}
                     </motion.span>
                   ) : (
                     <motion.span
@@ -173,9 +171,9 @@ export function Contact() {
                 </span>
                 <div>
                   <div className="text-xs uppercase tracking-[0.12em] text-ink-soft">
-                    WhatsApp
+                    {t.contact.whatsappLabel}
                   </div>
-                  <div className="text-sm">Send me a message</div>
+                  <div className="text-sm">{t.contact.whatsappSub}</div>
                 </div>
               </a>
 
@@ -185,16 +183,16 @@ export function Contact() {
                 </span>
                 <div>
                   <div className="text-xs uppercase tracking-[0.12em] text-ink-soft">
-                    Based in
+                    {t.contact.basedIn}
                   </div>
-                  <div className="text-sm">{site.location}</div>
+                  <div className="text-sm">{t.hero.location}</div>
                 </div>
               </div>
             </div>
 
             <div className="mt-auto space-y-3">
               <div className="text-xs uppercase tracking-[0.12em] text-ink-soft">
-                Elsewhere
+                {t.contact.elsewhere}
               </div>
               <div className="flex gap-2">
                 <a
@@ -236,36 +234,36 @@ export function Contact() {
             />
 
             <Field
-              label="Your name"
+              label={t.contact.nameLabel}
               error={errors.name?.message}
               input={
                 <input
                   {...register("name")}
-                  placeholder="Aisha"
+                  placeholder={t.contact.namePlaceholder}
                   className="w-full bg-transparent text-ink placeholder:text-ink-soft/70 focus:outline-none"
                 />
               }
             />
             <Field
-              label="Email"
+              label={t.contact.emailFieldLabel}
               error={errors.email?.message}
               input={
                 <input
                   {...register("email")}
                   type="email"
-                  placeholder="you@company.com"
+                  placeholder={t.contact.emailPlaceholder}
                   className="w-full bg-transparent text-ink placeholder:text-ink-soft/70 focus:outline-none"
                 />
               }
             />
             <Field
-              label="What's on your mind?"
+              label={t.contact.messageLabel}
               error={errors.message?.message}
               input={
                 <textarea
                   {...register("message")}
                   rows={5}
-                  placeholder="Tell me about the project…"
+                  placeholder={t.contact.messagePlaceholder}
                   className="w-full resize-none bg-transparent text-ink placeholder:text-ink-soft/70 focus:outline-none"
                 />
               }
@@ -287,19 +285,19 @@ export function Contact() {
 
             <div className="mt-2 flex items-center justify-between">
               <span className="text-xs text-ink-soft">
-                I usually reply within a day.
+                {t.contact.replyNote}
               </span>
               <Button type="submit" disabled={status === "sending" || status === "sent"}>
                 {status === "sending" ? (
                   <>
-                    <Loader2 className="h-4 w-4 animate-spin" /> Sending
+                    <Loader2 className="h-4 w-4 animate-spin" /> {t.contact.sending}
                   </>
                 ) : status === "sent" ? (
                   <>
-                    <Sparkles className="h-4 w-4" /> Sent
+                    <Sparkles className="h-4 w-4" /> {t.contact.sent}
                   </>
                 ) : (
-                  <>Send message</>
+                  <>{t.contact.send}</>
                 )}
               </Button>
             </div>

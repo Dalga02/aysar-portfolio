@@ -4,14 +4,26 @@ import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { site } from "@/data/site";
+import { useLanguage } from "@/lib/language-context";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
 import { MobileMenu } from "./MobileMenu";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
+
+  const navItems = [
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.services, href: "#services" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.experience, href: "#experience" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -61,11 +73,11 @@ export function Navbar() {
               <span className="grid h-7 w-7 place-items-center rounded-full bg-accent text-[13px] font-semibold text-white">
                 A
               </span>
-              <span className="font-display text-lg">{site.shortName}</span>
+              <span className="font-display text-lg">{t.brand.shortName}</span>
             </a>
 
             <nav className="hidden items-center gap-1 md:flex">
-              {site.nav.map((item) => {
+              {navItems.map((item) => {
                 const isActive = active === item.href;
                 return (
                   <a
@@ -90,12 +102,13 @@ export function Navbar() {
             </nav>
 
             <div className="flex items-center gap-2">
+              <LanguageToggle />
               <ThemeToggle />
               <a
                 href="#contact"
                 className="focus-ring hidden rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-soft md:inline-flex"
               >
-                Get in touch
+                {t.nav.getInTouch}
               </a>
               <button
                 onClick={() => setOpen(true)}
@@ -109,7 +122,7 @@ export function Navbar() {
         </div>
       </motion.header>
 
-      <MobileMenu open={open} onClose={() => setOpen(false)} />
+      <MobileMenu open={open} onClose={() => setOpen(false)} navItems={navItems} />
       <div id="top" />
     </>
   );

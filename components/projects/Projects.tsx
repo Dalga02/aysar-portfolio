@@ -5,9 +5,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Github, Sparkles } from "lucide-react";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { projects, projectCategories, type Project } from "@/data/projects";
+import { useLanguage } from "@/lib/language-context";
 import { cn } from "@/lib/utils";
 
 export function Projects() {
+  const { t } = useLanguage();
   const [active, setActive] = useState<(typeof projectCategories)[number]>("All");
 
   const filtered =
@@ -16,9 +18,9 @@ export function Projects() {
   return (
     <section id="projects" className="container-x py-24 md:py-32">
       <SectionTitle
-        eyebrow="Selected work"
-        title="Projects worth talking about."
-        description="A focused set of projects I'm building right now — real code, real problems, shipping soon."
+        eyebrow={t.projects.eyebrow}
+        title={t.projects.title}
+        description={t.projects.description}
       />
 
       <div className="mt-10 flex flex-wrap justify-center gap-2">
@@ -35,7 +37,7 @@ export function Projects() {
                   : "border-border bg-surface/60 text-ink-soft hover:text-ink"
               )}
             >
-              {cat}
+              {t.projects.categories[cat]}
             </button>
           );
         })}
@@ -43,15 +45,18 @@ export function Projects() {
 
       <motion.div layout className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {filtered.map((p, i) => (
-            <ProjectCard key={p.title} project={p} index={i} />
-          ))}
+          {filtered.map((p) => {
+            const globalIndex = projects.indexOf(p);
+            return (
+              <ProjectCard key={p.title} project={p} index={globalIndex} />
+            );
+          })}
         </AnimatePresence>
       </motion.div>
 
       {filtered.length === 0 && (
         <div className="mt-16 text-center text-ink-soft">
-          No projects in this category yet — more coming soon.
+          {t.projects.noProjects}
         </div>
       )}
     </section>
@@ -59,8 +64,12 @@ export function Projects() {
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { t } = useLanguage();
   const isComingSoon = project.status === "coming-soon";
   const isInProgress = project.status === "in-progress";
+  const content = t.projects.items[index];
+  const title = content?.title ?? project.title;
+  const description = content?.description ?? project.description;
 
   return (
     <motion.article
@@ -75,18 +84,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <div className="relative aspect-[16/10] overflow-hidden">
         <ProjectVisual title={project.title} />
         <div className="absolute inset-0 bg-gradient-to-t from-canvas/80 via-canvas/20 to-transparent" />
-        <span className="absolute left-4 top-4 rounded-full bg-canvas/70 px-2.5 py-1 text-[11px] font-medium text-ink backdrop-blur">
-          {project.category}
+        <span className="absolute start-4 top-4 rounded-full bg-canvas/70 px-2.5 py-1 text-[11px] font-medium text-ink backdrop-blur">
+          {t.projects.categories[project.category]}
         </span>
         {(isComingSoon || isInProgress) && (
-          <div className="absolute right-4 top-4 flex flex-col items-end gap-1.5">
+          <div className="absolute end-4 top-4 flex flex-col items-end gap-1.5">
             <span className="flex items-center gap-1.5 rounded-full bg-accent/90 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">
               <Sparkles className="h-3 w-3" />
-              In Development
+              {t.projects.inDevelopment}
             </span>
             {typeof project.progress === "number" && (
               <span className="rounded-full bg-canvas/70 px-2.5 py-1 text-[11px] font-medium text-ink backdrop-blur">
-                {project.progress}% complete
+                {project.progress}
+                {t.projects.percentComplete}
               </span>
             )}
           </div>
@@ -95,7 +105,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
       <div className="flex flex-col gap-4 p-6">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-2xl leading-tight">{project.title}</h3>
+          <h3 className="font-display text-2xl leading-tight">{title}</h3>
           <div className="flex items-center gap-1.5 text-ink-soft">
             {project.github && (
               <a
@@ -118,17 +128,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </div>
         </div>
 
-        <p className="text-sm leading-relaxed text-ink-soft">
-          {project.description}
-        </p>
+        <p className="text-sm leading-relaxed text-ink-soft">{description}</p>
 
         <div className="flex flex-wrap gap-1.5">
-          {project.tags.map((t) => (
+          {project.tags.map((tg) => (
             <span
-              key={t}
+              key={tg}
               className="rounded-full border border-border/60 bg-canvas/60 px-2 py-0.5 font-mono text-[11px] text-ink-soft"
             >
-              {t}
+              {tg}
             </span>
           ))}
         </div>
