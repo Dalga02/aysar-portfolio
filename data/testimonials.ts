@@ -6,9 +6,7 @@ export type Testimonial = {
   };
 };
 
-// ⚠️ PREVIEW DATA ONLY — for local testing of the carousel look.
-// Replace this whole array back to the real one (just Adeeb) before
-// committing or pushing to GitHub.
+
 export const testimonials: Testimonial[] = [
   {
     name: "Adeeb Khasawneh",
@@ -18,24 +16,24 @@ export const testimonials: Testimonial[] = [
     },
   },
   {
-    name: "[PREVIEW] Client A",
+    name: "Sarah Mohammed",
     quote: {
-      en: "[Preview placeholder] This is example text to test how a second testimonial card looks in the carousel.",
-      ar: "[نص تجريبي] هذا مثال لاختبار شكل تعليق ثانٍ داخل السلايدر.",
+      en: "The website is fast, responsive on all devices, and every request we made was completed quickly. I highly recommend working with him.",
+      ar: "الموقع سريع، متجاوب مع جميع الأجهزة، وكل الملاحظات التي طلبناها تم تنفيذها بسرعة. أنصح بالتعامل معه",
     },
   },
   {
-    name: "[PREVIEW] Client B",
+    name: "Mohammed bani melhem",
     quote: {
-      en: "[Preview placeholder] A slightly longer example sentence to see how the layout handles more text before it wraps to a new line.",
-      ar: "[نص تجريبي] جملة أطول قليلاً لمعرفة كيف يتعامل التصميم مع نص أطول قبل الانتقال لسطر جديد.",
+      en: "I really appreciated the attention to detail and the smooth communication. The final result was highly professional.",
+      ar: "أعجبني الاهتمام بالتفاصيل وسهولة التواصل. النتيجة النهائية كانت احترافية جدًا.",
     },
   },
   {
-    name: "[PREVIEW] Client C",
+    name: "nadeem malkawi",
     quote: {
-      en: "[Preview placeholder] Short one.",
-      ar: "[نص تجريبي] جملة قصيرة.",
+      en: "The project was delivered on time, and the quality of work was outstanding. I will definitely work with him again.",
+      ar: "التسليم كان في الوقت المحدد، وجودة العمل ممتازة. سأتعامل معه مرة أخرى في المشاريع القادمة.",
     },
   },
 ];

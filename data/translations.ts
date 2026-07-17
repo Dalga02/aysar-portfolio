@@ -147,7 +147,7 @@ export const translations: Record<Lang, TranslationDict> = {
         "Problem Solver",
       ],
       viewProjects: "View projects",
-      resume: "Résumé",
+      resume: "CV",
       location: "Jordan",
     },
     about: {

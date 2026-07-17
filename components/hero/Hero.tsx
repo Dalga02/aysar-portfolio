@@ -111,9 +111,6 @@ export function Hero() {
           </motion.div>
 
           <motion.div variants={item} className="mt-8 flex items-center gap-4 text-ink-soft">
-            <a href={site.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="focus-ring rounded-full p-2 transition-colors hover:text-ink">
-              <Github className="h-5 w-5" />
-            </a>
             <a href={site.socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="focus-ring rounded-full p-2 transition-colors hover:text-ink">
               <Linkedin className="h-5 w-5" />
             </a>
