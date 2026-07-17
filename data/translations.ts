@@ -324,7 +324,7 @@ export const translations: Record<Lang, TranslationDict> = {
   },
   ar: {
     brand: {
-      shortName: "أيس"عقود مستمرة، سبرنتات عمل، أو تسليم كامل من الألف إلى الياء — أضيف قيمة حقيقية في كل مرحلة تحتاج دقة واهتمام.",.دلقموني",
+      shortName: "أيسر.دلقموني",
     },
     nav: {
       about: "نبذة",
