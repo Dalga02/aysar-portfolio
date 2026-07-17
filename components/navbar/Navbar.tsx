@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import { site } from "@/data/site";
@@ -70,9 +71,14 @@ export function Navbar() {
             )}
           >
             <a href="#top" className="focus-ring flex items-center gap-2 rounded-full px-3 py-1">
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-accent text-[13px] font-semibold text-white">
-                A
-              </span>
+              <Image
+                src={site.avatarUrl}
+                alt={site.name}
+                width={28}
+                height={28}
+                unoptimized
+                className="h-7 w-7 rounded-full border border-border bg-canvas object-cover"
+              />
               <span className="font-display text-lg">{t.brand.shortName}</span>
             </a>
 
