@@ -11,6 +11,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
       duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      gestureOrientation: "vertical",
+      syncTouch: false,
     });
 
     function raf(time: number) {

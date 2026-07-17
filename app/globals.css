@@ -35,6 +35,8 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
   }
 
   body {
@@ -44,6 +46,8 @@
       radial-gradient(900px 500px at 100% 0%, hsl(var(--accent) / 0.08), transparent 60%);
     background-attachment: fixed;
     transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
   }
 
   /* Arabic font + heading fallback (Instrument Serif has no Arabic glyphs) */

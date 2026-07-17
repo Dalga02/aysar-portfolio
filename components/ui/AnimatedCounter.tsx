@@ -14,9 +14,10 @@ interface CounterProps {
   to: number;
   duration?: number;
   suffix?: string;
+  delay?: number;
 }
 
-export function AnimatedCounter({ to, duration = 1.6, suffix = "" }: CounterProps) {
+export function AnimatedCounter({ to, duration = 1.6, suffix = "", delay = 0 }: CounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const value = useMotionValue(0);
@@ -24,10 +25,10 @@ export function AnimatedCounter({ to, duration = 1.6, suffix = "" }: CounterProp
 
   useEffect(() => {
     if (inView) {
-      const controls = animate(value, to, { duration, ease: "easeOut" });
+      const controls = animate(value, to, { duration, delay, ease: "easeOut" });
       return controls.stop;
     }
-  }, [inView, to, duration, value]);
+  }, [inView, to, duration, delay, value]);
 
   return (
     <span ref={ref} className="tabular-nums">

@@ -1,10 +1,66 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useTransform,
+  animate,
+} from "framer-motion";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Reveal } from "@/components/effects/Reveal";
 import { skillGroups } from "@/data/skills";
 import { useLanguage } from "@/lib/language-context";
+
+function SkillRow({
+  name,
+  level,
+  delay,
+}: {
+  name: string;
+  level: number;
+  delay: number;
+}) {
+  const ref = useRef<HTMLLIElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const value = useMotionValue(0);
+  const rounded = useTransform(value, (v) => Math.round(v).toString());
+  const width = useTransform(value, (v) => `${v}%`);
+
+  useEffect(() => {
+    if (inView) {
+      const controls = animate(value, level, {
+        duration: 1.1,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
+      });
+      return controls.stop;
+    }
+  }, [inView, level, delay, value]);
+
+  return (
+    <li ref={ref} className="flex flex-col gap-1.5">
+      <div className="flex items-center justify-between text-sm">
+        <span className="text-ink">{name}</span>
+        <motion.span className="tabular-nums text-ink-soft">
+          {rounded}
+        </motion.span>
+      </div>
+      <div className="relative h-1.5 overflow-hidden rounded-full bg-muted/70">
+        <motion.div
+          className="absolute inset-y-0 start-0 rounded-full"
+          style={{
+            width,
+            background:
+              "linear-gradient(90deg, hsl(var(--accent)), hsl(var(--accent-soft)))",
+            boxShadow: "0 0 20px -4px hsl(var(--accent) / 0.6)",
+          }}
+        />
+      </div>
+    </li>
+  );
+}
 
 export function Skills() {
   const { t } = useLanguage();
@@ -32,33 +88,12 @@ export function Skills() {
 
               <ul className="flex flex-col gap-5">
                 {group.items.map((s, i) => (
-                  <li key={s.name} className="flex flex-col gap-1.5">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-ink">{s.name}</span>
-                      <span className="tabular-nums text-ink-soft">
-                        {s.level}
-                      </span>
-                    </div>
-                    <div className="relative h-1.5 overflow-hidden rounded-full bg-muted/70">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${s.level}%` }}
-                        viewport={{ once: true, margin: "-80px" }}
-                        transition={{
-                          duration: 1.1,
-                          delay: 0.15 + i * 0.05,
-                          ease: [0.22, 1, 0.36, 1],
-                        }}
-                        className="absolute inset-y-0 start-0 rounded-full"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, hsl(var(--accent)), hsl(var(--accent-soft)))",
-                          boxShadow:
-                            "0 0 20px -4px hsl(var(--accent) / 0.6)",
-                        }}
-                      />
-                    </div>
-                  </li>
+                  <SkillRow
+                    key={s.name}
+                    name={s.name}
+                    level={s.level}
+                    delay={0.15 + i * 0.05}
+                  />
                 ))}
               </ul>
             </div>
