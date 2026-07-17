@@ -15,6 +15,7 @@ export interface TranslationDict {
   };
   hero: {
     badge: string;
+    fullName: string;
     titleLine1: string;
     titleLine2: string;
     titleLine3: string;
@@ -130,6 +131,7 @@ export const translations: Record<Lang, TranslationDict> = {
     },
     hero: {
       badge: "Available for new work",
+      fullName: "Aysar Dalgamouni",
       titleLine1: "Crafting digital",
       titleLine2: "experiences",
       titleLine3: "that feel",
@@ -146,7 +148,7 @@ export const translations: Record<Lang, TranslationDict> = {
       ],
       viewProjects: "View projects",
       resume: "Résumé",
-      location: "Amman, Jordan",
+      location: "Jordan",
     },
     about: {
       eyebrow: "About",
@@ -154,7 +156,7 @@ export const translations: Record<Lang, TranslationDict> = {
       description:
         "I've spent the last few years building products that need to work well on a phone in a village and a monitor in a boardroom. I like small teams, careful choices, and code that will read well a year from now.",
       bio1:
-        "Based in Amman, I collaborate with founders and product teams to ship interfaces that are quick, considered, and honest. I care about the tiny frictions — the hover you didn't notice was missing, the empty state that told you what to do, the load that never happened.",
+        "Based in Jordan, I collaborate with founders and product teams to ship interfaces that are quick, considered, and honest. I care about the tiny frictions — the hover you didn't notice was missing, the empty state that told you what to do, the load that never happened.",
       bio2:
         "My default stack is Next.js, TypeScript, Tailwind, and Postgres, but the tools follow the problem. When a project needs a different shape, I pick the boring one that will still make sense in three years.",
       techLabel: "Tech I reach for",
@@ -242,21 +244,15 @@ export const translations: Record<Lang, TranslationDict> = {
     },
     timeline: {
       eyebrow: "Experience",
-      title: "A short, honest timeline.",
+      title: "My professional journey so far.",
       description:
         "How I got here — the milestones that shaped what I care about.",
       items: [
         {
-          title: "Junior Developer",
-          org: "Software Company",
+          title: "B.Sc. Communication and Software Engineering",
+          org: "Al-Balqa Applied University (BAU)",
           description:
-            "Building production web applications as part of a development team, focusing on clean code and continuous learning.",
-        },
-        {
-          title: "Freelance Developer",
-          org: "Independent",
-          description:
-            "Delivered custom web solutions for clients, taking projects from concept to deployment.",
+            "Five-year journey through programming fundamentals, algorithms, databases, and software engineering principles.",
         },
         {
           title: "Full-Stack Web Development",
@@ -265,22 +261,28 @@ export const translations: Record<Lang, TranslationDict> = {
             "Intensive hands-on training covering modern full-stack development — React, Next.js, Node.js, and database design.",
         },
         {
-          title: "B.Sc. Communication and Software Engineering",
-          org: "Al-Balqa Applied University (BAU)",
+          title: "Freelance Developer",
+          org: "Independent",
           description:
-            "Five-year journey through programming fundamentals, algorithms, databases, and software engineering principles.",
+            "Delivered custom web solutions for clients, taking projects from concept to deployment.",
+        },
+        {
+          title: "Full-Stack Developer",
+          org: "Software Company",
+          description:
+            "Building production web applications as part of a development team, focusing on clean code and continuous learning.",
         },
       ],
     },
     testimonials: {
       eyebrow: "Kind words",
       title: "What people say.",
-      description: "Working with clients now — kind words coming soon.",
-      comingSoon: "Coming soon",
-      heading1: "Building relationships,",
-      heading2: "one project at a time.",
-      body: "I'm actively working with clients right now. Testimonials will land here as projects wrap up.",
-      cta: "Be the first",
+      description: "A few kind words from people I've worked with — more on the way.",
+      comingSoon: "More coming soon",
+      heading1: "More kind words",
+      heading2: "on the way.",
+      body: "I'm continuing to work with clients — this space will keep growing.",
+      cta: "Get in touch",
     },
     contact: {
       eyebrow: "Contact",
@@ -322,7 +324,7 @@ export const translations: Record<Lang, TranslationDict> = {
   },
   ar: {
     brand: {
-      shortName: "أيسر دلقموني",
+      shortName: "أيسر.دلقموني",
     },
     nav: {
       about: "نبذة",
@@ -335,36 +337,37 @@ export const translations: Record<Lang, TranslationDict> = {
     },
     hero: {
       badge: "متاح لعمل جديد",
+      fullName: "أيسر دلقموني",
       titleLine1: "أصنع تجارب",
       titleLine2: "رقمية",
       titleLine3: "تنبض",
       titleHighlight: "بالحياة.",
-      subtitlePrefix: "أهلاً، أنا",
+      subtitlePrefix: "مرحباً، أنا",
       subtitle:
-        "أبني تطبيقات ويب سريعة ومدروسة من الألف إلى الياء — من هيكلة النظام وربط الـ API إلى آخر بكسل بالواجهة.",
+        "أبني تطبيقات ويب سريعة ومدروسة من الألف إلى الياء، بدءاً من هيكلة النظام وربط واجهات البرمجة، وصولاً إلى آخر بكسل في الواجهة.",
       typing: [
         "مطوّر Full-Stack",
         "مطوّر React و Next.js",
         "متخصص Next.js",
         "مهندس واجهات",
-        "حلّال مشاكل",
+        "حلّال المشكلات",
       ],
       viewProjects: "شاهد المشاريع",
       resume: "السيرة الذاتية",
-      location: "عمّان، الأردن",
+      location: "الأردن",
     },
     about: {
       eyebrow: "نبذة عني",
       title: "مهندس يهتم بآخر 10% من التفاصيل.",
       description:
-        "قضيت السنوات الأخيرة أبني منتجات لازم تشتغل تمام سواء على موبايل بقرية أو شاشة بقاعة اجتماعات. بحب الفرق الصغيرة، القرارات المدروسة، وكود بضل مفهوم بعد سنة من كتابته.",
+        "أمضيت السنوات الأخيرة في بناء منتجات يجب أن تعمل بكفاءة، سواء على هاتف في قرية نائية أو شاشة في قاعة اجتماعات. أُفضّل الفرق الصغيرة، والقرارات المدروسة، والكود الذي يبقى واضحاً بعد مرور عام على كتابته.",
       bio1:
-        "من عمّان، بتعاون مع مؤسسين وفرق منتج عشان أبني واجهات سريعة، مدروسة، وصادقة. بهتم بأدق التفاصيل — الـ hover اللي كان ناقص وما حد لاحظه، حالة الفراغ اللي بتوضح شو تعمل، والتحميل اللي ما صار أصلاً.",
+        "من الأردن، أتعاون مع المؤسسين وفرق المنتج لبناء واجهات سريعة ومدروسة وصادقة. أهتم بأدق التفاصيل — تأثير الـ hover الذي كان غائباً ولم ينتبه له أحد، وحالة الفراغ التي توضح للمستخدم ما عليه فعله، والتحميل الذي لم يحدث أصلاً.",
       bio2:
-        "التقنيات اللي بشتغل فيها افتراضياً هي Next.js وTypeScript وTailwind وPostgres، بس الأدوات بتتبع طبيعة المشكلة. لما مشروع يحتاج شكل مختلف، بختار الحل الأبسط اللي رح يضل منطقي بعد ثلاث سنين.",
-      techLabel: "تقنيات بلجأ لها",
+        "التقنيات التي أعتمدها افتراضياً هي Next.js وTypeScript وTailwind وPostgres، لكن اختيار الأدوات يتبع طبيعة المشكلة دائماً. وحين يحتاج المشروع نهجاً مختلفاً، أختار الحل الأبسط الذي سيبقى منطقياً بعد ثلاث سنوات.",
+      techLabel: "تقنيات أعتمد عليها",
       stats: [
-        { value: 1, suffix: "+", label: "سنوات عمل" },
+        { value: 1, suffix: "+", label: "سنوات خبرة" },
         { value: 10, suffix: "+", label: "مشروع منجز" },
         { value: 5, suffix: "+", label: "عميل سعيد" },
         { value: 100, suffix: "%", label: "اهتمام بالتفاصيل" },
@@ -372,16 +375,16 @@ export const translations: Record<Lang, TranslationDict> = {
     },
     skills: {
       eyebrow: "المهارات",
-      title: "عمق حيث يهم، وسعة عشان أتحرك بسرعة.",
+      title: "عمق حيث يلزم، واتساع يتيح التحرك بسرعة.",
       description:
-        "تقنيات تشكّلت من التطبيق الفعلي. بغوص عميق بالطبقات اللي أملكها من الألف للياء، وبقدر أتعامل بارتياح مع الباقي.",
+        "مجموعة تقنية تشكّلت من خلال التطبيق الفعلي. أتعمّق في الطبقات التي أمتلكها بالكامل، وأتعامل بارتياح مع بقية الطبقات.",
       groupTitles: ["الواجهة الأمامية", "الخلفية", "الأدوات والسحابة"],
     },
     services: {
       eyebrow: "الخدمات",
-      title: "شو بقدر أساعدك تبنيه.",
+      title: "ما الذي يمكنني مساعدتك في بنائه؟",
       description:
-        "عقود مستمرة، سبرنتات، أو تسليم كامل من الألف للياء — بندمج بأي مكان الشغل بحاجة اهتمام.",
+        "عقود مستمرة، سبرنتات عمل، أو تسليم كامل من الألف إلى الياء — أنخرط في العمل أينما احتاج إلى عناية.",
       items: [
         {
           title: "هندسة الواجهة الأمامية",
@@ -396,7 +399,7 @@ export const translations: Record<Lang, TranslationDict> = {
         {
           title: "تصميم الواجهات",
           description:
-            "واجهات مصممة مباشرة بالمتصفح — من المخطط الأولي للمكوّن النهائي المصقول.",
+            "واجهات مصممة مباشرة بالمتصفح — من المخطط الأولي إلى المكوّن النهائي المصقول.",
         },
         {
           title: "الأداء",
@@ -415,7 +418,7 @@ export const translations: Record<Lang, TranslationDict> = {
       eyebrow: "أعمال مختارة",
       title: "مشاريع تستحق الحديث عنها.",
       description:
-        "مجموعة مركّزة من المشاريع اللي بشتغل عليها هلق — كود حقيقي، مشاكل حقيقية، وقريباً بتشتغل.",
+        "مجموعة مركّزة من المشاريع التي أعمل عليها حالياً — كود حقيقي، ومشكلات حقيقية، وإطلاق قريب.",
       categories: {
         All: "الكل",
         Frontend: "واجهة أمامية",
@@ -426,41 +429,35 @@ export const translations: Record<Lang, TranslationDict> = {
       },
       inDevelopment: "قيد التطوير",
       percentComplete: "% مكتمل",
-      noProjects: "لا مشاريع بهاي الفئة بعد — المزيد قريباً.",
+      noProjects: "لا توجد مشاريع في هذه الفئة بعد — المزيد قريباً.",
       items: [
         {
           title: "Task Flow",
           description:
-            "مدير مهام بسيط ومركّز مع قوائم سحب وإفلات، مصادقة، ومزامنة فورية — زي نسخة أخف من Todoist.",
+            "مدير مهام بسيط ومركّز يضم قوائم بالسحب والإفلات، ونظام مصادقة، ومزامنة فورية — أشبه بنسخة أخف من Todoist.",
         },
         {
           title: "DevFinder",
           description:
-            "دور على أي مطوّر بـ GitHub واحصل على بروفايل مرئي نظيف — مستودعات، أهم اللغات، ورسوم بيانية للنشاط، كل شي بشاشة واحدة.",
+            "ابحث عن أي مطوّر على GitHub واحصل على ملف تعريفي مرئي أنيق — المستودعات، أبرز اللغات، ورسوم بيانية للنشاط، كل ذلك في شاشة واحدة.",
         },
         {
           title: "Snippet Vault",
           description:
-            "مكتبة شخصية لحفظ مقتطفات الكود مع تلوين الصياغة، بحث، وتصنيفات لغوية — مبني على طريقة شغل المطورين الفعلية.",
+            "مكتبة شخصية لحفظ مقتطفات الكود، مزوّدة بتلوين للصياغة، وخاصية بحث، وتصنيفات حسب اللغة — مصمّمة وفق الطريقة الفعلية التي يعمل بها المطوّرون.",
         },
       ],
     },
     timeline: {
       eyebrow: "الخبرات",
-      title: "جدول زمني قصير وصادق.",
-      description: "كيف وصلت هون — المحطات اللي شكّلت اهتماماتي.",
+      title: "مسيرتي المهنية حتى الآن.",
+      description: "كيف وصلت إلى هنا — المحطات التي شكّلت اهتماماتي.",
       items: [
         {
-          title: "مطوّر Junior",
-          org: "شركة برمجيات",
+          title: "بكالوريوس هندسة الاتصالات والبرمجيات",
+          org: "جامعة البلقاء التطبيقية",
           description:
-            "أبني تطبيقات ويب إنتاجية كجزء من فريق تطوير، مع تركيز على كود نظيف وتعلّم مستمر.",
-        },
-        {
-          title: "مطوّر فريلانس",
-          org: "عمل مستقل",
-          description:
-            "سلّمت حلول ويب مخصصة لعملاء، من الفكرة الأولى وحتى النشر.",
+            "رحلة خمس سنوات بين أساسيات البرمجة، الخوارزميات، قواعد البيانات، ومبادئ هندسة البرمجيات.",
         },
         {
           title: "تطوير الويب المتكامل",
@@ -469,51 +466,58 @@ export const translations: Record<Lang, TranslationDict> = {
             "تدريب مكثف وعملي يغطي تطوير الويب المتكامل الحديث — React وNext.js وNode.js وتصميم قواعد البيانات.",
         },
         {
-          title: "بكالوريوس هندسة الاتصالات والبرمجيات",
-          org: "جامعة البلقاء التطبيقية",
+          title: "مطوّر فريلانس",
+          org: "عمل مستقل",
           description:
-            "رحلة خمس سنوات بين أساسيات البرمجة، الخوارزميات، قواعد البيانات، ومبادئ هندسة البرمجيات.",
+            "قدّمت حلول ويب مخصصة لعملاء متعددين، من الفكرة الأولى وحتى النشر.",
+        },
+        {
+          title: "مطوّر Full-Stack",
+          org: "شركة برمجيات",
+          description:
+            "أعمل على بناء تطبيقات ويب إنتاجية ضمن فريق تطوير، مع التركيز على كتابة كود نظيف والتعلّم المستمر.",
         },
       ],
     },
     testimonials: {
       eyebrow: "كلمات لطيفة",
-      title: "شو بيحكوا الناس.",
-      description: "بشتغل مع عملاء حالياً — الكلمات الطيبة جاية قريباً.",
-      comingSoon: "قريباً",
-      heading1: "ببني علاقات،",
-      heading2: "مشروع بمشروع.",
-      body: "أنا شغال فعلياً مع عملاء هلق. آراؤهم رح تظهر هون أول ما تخلص المشاريع.",
-      cta: "كن أول واحد",
+      title: "ماذا يقول الآخرون.",
+      description: "كلمات من أشخاص تعاملت معهم — والمزيد قادم قريباً.",
+      comingSoon: "المزيد قريباً",
+      heading1: "كلمات لطيفة أخرى",
+      heading2: "في الطريق.",
+      body: "أستمر بالعمل مع عملاء جدد — وهذا القسم سيكبر مع الوقت.",
+      cta: "تواصل معي",
     },
     contact: {
       eyebrow: "تواصل",
-      title: "عندك شي بدك تبنيه؟",
-      description: "مشاريع كاملة، سبرنتات، أو بس سؤال حلو — الصندوق مفتوح.",
+      title: "هل لديك شيء تريد بناءه؟",
+      description:
+        "مشاريع متكاملة، سبرنتات عمل، أو مجرد سؤال جيد — صندوق الوارد مفتوح دائماً.",
       available: "متاح حالياً",
-      emailLabel: "الإيميل",
+      emailLabel: "البريد الإلكتروني",
       whatsappLabel: "واتساب",
-      whatsappSub: "ابعتلي رسالة",
+      whatsappSub: "أرسل لي رسالة",
       basedIn: "مقيم في",
-      elsewhere: "أماكن تانية",
+      elsewhere: "روابط أخرى",
       copied: "تم النسخ",
       nameLabel: "اسمك",
       namePlaceholder: "عائشة",
-      emailFieldLabel: "الإيميل",
+      emailFieldLabel: "البريد الإلكتروني",
       emailPlaceholder: "you@company.com",
-      messageLabel: "شو ببالك؟",
-      messagePlaceholder: "احكيلي عن المشروع…",
-      replyNote: "بالعادة برد خلال يوم.",
-      send: "ابعت الرسالة",
-      sending: "عم تبعت",
-      sent: "انبعتت",
+      messageLabel: "ما الذي تودّ مشاركته؟",
+      messagePlaceholder: "أخبرني عن مشروعك…",
+      replyNote: "عادةً ما أردّ خلال يوم واحد.",
+      send: "إرسال الرسالة",
+      sending: "جارِ الإرسال",
+      sent: "تم الإرسال",
       errors: {
-        name: "الاسم قصير شوي",
-        email: "هاد الإيميل مش شكله صحيح",
-        message: "احكيلي أكتر شوي (10 أحرف عالأقل)",
-        notConfigured: "نموذج التواصل لسا مش مجهّز.",
-        generic: "صار في خطأ. جرب مرة ثانية؟",
-        network: "ما قدرنا نوصل للسيرفر. تأكد من الاتصال.",
+        name: "الاسم قصير جداً",
+        email: "صيغة البريد الإلكتروني غير صحيحة",
+        message: "أخبرني أكثر قليلاً (10 أحرف على الأقل)",
+        notConfigured: "نموذج التواصل غير مُفعّل بعد.",
+        generic: "حدث خطأ ما. هل تودّ المحاولة مرة أخرى؟",
+        network: "تعذّر الوصول إلى الخادم. يرجى التحقق من الاتصال.",
       },
     },
     footer: {

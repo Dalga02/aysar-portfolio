@@ -283,10 +283,7 @@ export function Contact() {
               )}
             </AnimatePresence>
 
-            <div className="mt-2 flex items-center justify-between">
-              <span className="text-xs text-ink-soft">
-                {t.contact.replyNote}
-              </span>
+            <div className="mt-2 flex items-center justify-end">
               <Button type="submit" disabled={status === "sending" || status === "sent"}>
                 {status === "sending" ? (
                   <>

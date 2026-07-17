@@ -51,7 +51,7 @@ export function About() {
               </motion.div>
               <div>
                 <div className="font-display text-2xl leading-tight">
-                  {site.name}
+                  {t.hero.fullName}
                 </div>
                 <div className="text-sm text-ink-soft">
                   {site.role} · {t.hero.location}

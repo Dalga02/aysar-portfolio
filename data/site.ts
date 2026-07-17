@@ -3,7 +3,7 @@ export const site = {
   shortName: "Aysar.Dalga",
   role: "Full-Stack Developer",
   url: "https://aysardalgamouni.com",
-  location: "Amman, Jordan",
+  location: "Jordan",
   email: "aesrdalgamouni@gmail.com",
   description:
     "Full-stack developer crafting fast, thoughtful web experiences with Next.js, TypeScript, React, and Node.",
@@ -29,5 +29,5 @@ export const site = {
     "UI Engineer",
     "Problem Solver",
   ],
-  avatarUrl: "https://api.dicebear.com/9.x/notionists/svg?seed=Aysar",
+  avatarUrl: "/avatar.png",
 } as const;

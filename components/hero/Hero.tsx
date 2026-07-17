@@ -88,7 +88,7 @@ export function Hero() {
           </motion.h1>
 
           <motion.p variants={item} className="mt-6 max-w-lg text-base leading-relaxed text-ink-soft md:text-lg">
-            {t.hero.subtitlePrefix} <span className="text-ink">{site.name}</span>. {t.hero.subtitle}
+            {t.hero.subtitlePrefix} <span className="text-ink">{t.hero.fullName}</span>. {t.hero.subtitle}
           </motion.p>
 
           <motion.div variants={item} className="mt-5 font-mono text-sm text-ink-soft">
