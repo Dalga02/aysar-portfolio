@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ArrowUp } from "lucide-react";
 import { motion } from "framer-motion";
 import { site } from "@/data/site";
@@ -12,9 +13,14 @@ export function Footer() {
     <footer className="relative mt-16 border-t border-border/60">
       <div className="container-x flex flex-col items-center justify-between gap-6 py-10 md:flex-row">
         <div className="flex items-center gap-3">
-          <span className="grid h-7 w-7 place-items-center rounded-full bg-accent text-[13px] font-semibold text-white">
-            A
-          </span>
+          <Image
+            src="/logo-mark.png"
+            alt={site.name}
+            width={28}
+            height={28}
+            unoptimized
+            className="h-7 w-7 rounded-full"
+          />
           <span className="text-sm text-ink-soft">
             © {new Date().getFullYear()} {site.name}. {t.footer.crafted}
           </span>
