@@ -27,8 +27,10 @@ export const projects: Project[] = [
       "Search any developer on GitHub and get a clean visual profile — repos, top languages, activity charts, all in one view.",
     tags: ["Next.js", "TypeScript", "GitHub API", "Recharts", "Tailwind"],
     category: "Frontend",
-    status: "coming-soon",
-    progress: 20,
+    status: "live",
+    progress: 100,
+    demo: "https://devfinder.aysardalgamouni.com",
+    github: "https://github.com/Dalga02/devfinder",
   },
   {
     title: "Snippet Vault",
