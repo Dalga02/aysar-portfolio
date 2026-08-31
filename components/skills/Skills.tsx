@@ -10,7 +10,7 @@ import {
 } from "framer-motion";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Reveal } from "@/components/effects/Reveal";
-import { skillGroups } from "@/data/skills";
+import { skillGroups, learningTech } from "@/data/skills";
 import { useLanguage } from "@/lib/language-context";
 
 function SkillRow({
@@ -64,6 +64,7 @@ function SkillRow({
 
 export function Skills() {
   const { t } = useLanguage();
+  const [frontendGroup, toolsGroup] = skillGroups;
 
   return (
     <section id="skills" className="container-x py-24 md:py-32">
@@ -74,31 +75,79 @@ export function Skills() {
       />
 
       <div className="mt-16 grid gap-6 md:grid-cols-3">
-        {skillGroups.map((group, gi) => (
-          <Reveal key={group.title} delay={gi * 0.05}>
-            <div className="glass noise flex h-full flex-col gap-6 rounded-3xl p-7">
-              <div className="flex items-center justify-between">
-                <h3 className="font-display text-2xl">
-                  {t.skills.groupTitles[gi] ?? group.title}
-                </h3>
-                <span className="rounded-full bg-muted/70 px-2.5 py-1 font-mono text-[11px] text-ink-soft">
-                  0{gi + 1}
-                </span>
-              </div>
-
-              <ul className="flex flex-col gap-5">
-                {group.items.map((s, i) => (
-                  <SkillRow
-                    key={s.name}
-                    name={s.name}
-                    level={s.level}
-                    delay={0.15 + i * 0.05}
-                  />
-                ))}
-              </ul>
+        <Reveal delay={0}>
+          <div className="glass noise flex h-full flex-col gap-6 rounded-3xl p-7">
+            <div className="flex items-center justify-between">
+              <h3 className="font-display text-2xl">
+                {t.skills.groupTitles[0] ?? frontendGroup.title}
+              </h3>
+              <span className="rounded-full bg-muted/70 px-2.5 py-1 font-mono text-[11px] text-ink-soft">
+                01
+              </span>
             </div>
-          </Reveal>
-        ))}
+
+            <ul className="flex flex-col gap-5">
+              {frontendGroup.items.map((s, i) => (
+                <SkillRow
+                  key={s.name}
+                  name={s.name}
+                  level={s.level}
+                  delay={0.15 + i * 0.05}
+                />
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.05}>
+          <div className="glass noise flex h-full flex-col gap-6 rounded-3xl p-7">
+            <div className="flex items-center justify-between">
+              <h3 className="font-display text-2xl">
+                {t.skills.learningTitle}
+              </h3>
+              <span className="rounded-full bg-muted/70 px-2.5 py-1 font-mono text-[11px] text-ink-soft">
+                02
+              </span>
+            </div>
+
+            <p className="text-sm text-ink-soft">{t.skills.learningCaption}</p>
+
+            <div className="flex flex-wrap gap-2">
+              {learningTech.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-full border border-ink/10 px-3.5 py-1.5 text-sm text-ink-soft"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="glass noise flex h-full flex-col gap-6 rounded-3xl p-7">
+            <div className="flex items-center justify-between">
+              <h3 className="font-display text-2xl">
+                {t.skills.groupTitles[1] ?? toolsGroup.title}
+              </h3>
+              <span className="rounded-full bg-muted/70 px-2.5 py-1 font-mono text-[11px] text-ink-soft">
+                03
+              </span>
+            </div>
+
+            <ul className="flex flex-col gap-5">
+              {toolsGroup.items.map((s, i) => (
+                <SkillRow
+                  key={s.name}
+                  name={s.name}
+                  level={s.level}
+                  delay={0.15 + i * 0.05}
+                />
+              ))}
+            </ul>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

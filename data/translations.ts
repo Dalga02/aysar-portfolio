@@ -41,6 +41,8 @@ export interface TranslationDict {
     title: string;
     description: string;
     groupTitles: string[];
+    learningTitle: string;
+    learningCaption: string;
   };
   services: {
     eyebrow: string;
@@ -172,7 +174,9 @@ export const translations: Record<Lang, TranslationDict> = {
       title: "Depth where it matters, breadth to move fast.",
       description:
         "A working stack shaped by shipping. I go deep on the layers I own end to end, and stay comfortable across the rest.",
-      groupTitles: ["Frontend", "Backend", "Tools & Cloud"],
+      groupTitles: ["Frontend", "Tools & Cloud"],
+      learningTitle: "Currently Learning",
+      learningCaption: "Building full-stack fundamentals, one project at a time.",
     },
     services: {
       eyebrow: "Services",
@@ -378,7 +382,9 @@ export const translations: Record<Lang, TranslationDict> = {
       title: "عمق حيث يلزم، واتساع يتيح التحرك بسرعة.",
       description:
         "مجموعة تقنية تشكّلت من خلال التطبيق الفعلي. أتعمّق في الطبقات التي أمتلكها بالكامل، وأتعامل بارتياح مع بقية الطبقات.",
-      groupTitles: ["الواجهة الأمامية", "الخلفية", "الأدوات والسحابة"],
+      groupTitles: ["الواجهة الأمامية", "الأدوات والسحابة"],
+      learningTitle: "قيد التعلّم",
+      learningCaption: "أبني أساسيات الفول ستاك، مشروعاً بعد مشروع.",
     },
     services: {
       eyebrow: "الخدمات",
