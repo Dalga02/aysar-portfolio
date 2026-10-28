@@ -25,7 +25,6 @@ function SkillRow({
   const ref = useRef<HTMLLIElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const value = useMotionValue(0);
-  const rounded = useTransform(value, (v) => Math.round(v).toString());
   const width = useTransform(value, (v) => `${v}%`);
 
   useEffect(() => {
@@ -43,9 +42,6 @@ function SkillRow({
     <li ref={ref} className="flex flex-col gap-1.5">
       <div className="flex items-center justify-between text-sm">
         <span className="text-ink">{name}</span>
-        <motion.span className="tabular-nums text-ink-soft">
-          {rounded}
-        </motion.span>
       </div>
       <div className="relative h-1.5 overflow-hidden rounded-full bg-muted/70">
         <motion.div
