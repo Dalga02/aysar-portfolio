@@ -10,7 +10,7 @@ import {
 } from "framer-motion";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Reveal } from "@/components/effects/Reveal";
-import { skillGroups, learningTech } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
 import { useLanguage } from "@/lib/language-context";
 
 function SkillRow({
@@ -64,7 +64,7 @@ function SkillRow({
 
 export function Skills() {
   const { t } = useLanguage();
-  const [frontendGroup, toolsGroup] = skillGroups;
+  const [frontendGroup, backendGroup, toolsGroup] = skillGroups;
 
   return (
     <section id="skills" className="container-x py-24 md:py-32">
@@ -103,25 +103,23 @@ export function Skills() {
           <div className="glass noise flex h-full flex-col gap-6 rounded-3xl p-7">
             <div className="flex items-center justify-between">
               <h3 className="font-display text-2xl">
-                {t.skills.learningTitle}
+                {t.skills.groupTitles[1] ?? backendGroup.title}
               </h3>
               <span className="rounded-full bg-muted/70 px-2.5 py-1 font-mono text-[11px] text-ink-soft">
                 02
               </span>
             </div>
 
-            <p className="text-sm text-ink-soft">{t.skills.learningCaption}</p>
-
-            <div className="flex flex-wrap gap-2">
-              {learningTech.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full border border-ink/10 px-3.5 py-1.5 text-sm text-ink-soft"
-                >
-                  {tech}
-                </span>
+            <ul className="flex flex-col gap-5">
+              {backendGroup.items.map((s, i) => (
+                <SkillRow
+                  key={s.name}
+                  name={s.name}
+                  level={s.level}
+                  delay={0.15 + i * 0.05}
+                />
               ))}
-            </div>
+            </ul>
           </div>
         </Reveal>
 
@@ -129,7 +127,7 @@ export function Skills() {
           <div className="glass noise flex h-full flex-col gap-6 rounded-3xl p-7">
             <div className="flex items-center justify-between">
               <h3 className="font-display text-2xl">
-                {t.skills.groupTitles[1] ?? toolsGroup.title}
+                {t.skills.groupTitles[2] ?? toolsGroup.title}
               </h3>
               <span className="rounded-full bg-muted/70 px-2.5 py-1 font-mono text-[11px] text-ink-soft">
                 03
