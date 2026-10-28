@@ -13,20 +13,22 @@ export const skillGroups: SkillGroup[] = [
     ],
   },
   {
+    title: "Backend",
+    items: [
+      { name: "Node.js", level: 85 },
+      { name: "PostgreSQL", level: 80 },
+      { name: "Prisma", level: 80 },
+      { name: "REST / GraphQL", level: 82 },
+      { name: "Redis", level: 70 },
+    ],
+  },
+  {
     title: "Tools & Cloud",
     items: [
       { name: "Git / GitHub", level: 95 },
       { name: "Docker", level: 65 },
     ],
   },
-];
-
-export const learningTech = [
-  "Node.js",
-  "PostgreSQL",
-  "Prisma",
-  "REST / GraphQL",
-  "Redis",
 ];
 
 export const techIcons = [
