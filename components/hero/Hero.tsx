@@ -8,6 +8,7 @@ import { useLanguage } from "@/lib/language-context";
 import { Button } from "@/components/ui/Button";
 import { GradientText } from "@/components/ui/GradientText";
 import { HeroBackground } from "./HeroBackground";
+import { VantaNetBackground } from "./VantaNetBackground";
 import { FloatingIcons } from "./FloatingIcons";
 import { HeroIllustration } from "./HeroIllustration";
 
@@ -62,6 +63,7 @@ export function Hero() {
   return (
     <section className="relative min-h-[100svh] pt-28 md:pt-32">
       <HeroBackground />
+      <VantaNetBackground />
 
       <div className="container-x grid grid-cols-1 items-center gap-14 pb-24 lg:grid-cols-2 lg:gap-10 lg:pb-32">
         {/* Left */}
