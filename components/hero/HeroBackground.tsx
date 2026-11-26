@@ -17,7 +17,7 @@ export function HeroBackground() {
 
       {/* Blobs */}
       <motion.div
-        className="absolute -left-40 top-10 h-[520px] w-[520px] rounded-full blur-3xl"
+        className="absolute -left-40 top-10 h-[520px] w-[520px] rounded-full will-change-transform"
         style={{
           background:
             "radial-gradient(circle, hsl(var(--accent) / 0.35), transparent 60%)",
@@ -26,7 +26,7 @@ export function HeroBackground() {
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
-        className="absolute -right-32 top-40 h-[420px] w-[420px] rounded-full blur-3xl"
+        className="absolute -right-32 top-40 h-[420px] w-[420px] rounded-full will-change-transform"
         style={{
           background:
             "radial-gradient(circle, hsl(var(--accent-soft) / 0.28), transparent 65%)",

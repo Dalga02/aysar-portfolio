@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function CursorGlow() {
   const [enabled, setEnabled] = useState(false);
-  const [pos, setPos] = useState({ x: -400, y: -400 });
+  // Motion values update outside React, so moving the mouse no longer re-renders the component.
+  const rawX = useMotionValue(-400);
+  const rawY = useMotionValue(-400);
+  const x = useSpring(rawX, { stiffness: 60, damping: 22, mass: 0.6 });
+  const y = useSpring(rawY, { stiffness: 60, damping: 22, mass: 0.6 });
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -13,23 +17,26 @@ export function CursorGlow() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     setEnabled(true);
 
-    const onMove = (e: MouseEvent) => setPos({ x: e.clientX, y: e.clientY });
-    window.addEventListener("pointermove", onMove);
+    const onMove = (e: PointerEvent) => {
+      rawX.set(e.clientX - 210);
+      rawY.set(e.clientY - 210);
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
     return () => window.removeEventListener("pointermove", onMove);
-  }, []);
+  }, [rawX, rawY]);
 
   if (!enabled) return null;
 
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none fixed z-[45] h-[420px] w-[420px] rounded-full blur-3xl mix-blend-screen"
+      className="pointer-events-none fixed left-0 top-0 z-[45] h-[420px] w-[420px] rounded-full mix-blend-screen will-change-transform"
       style={{
+        x,
+        y,
         background:
           "radial-gradient(circle, hsl(var(--accent) / 0.25), transparent 60%)",
       }}
-      animate={{ x: pos.x - 210, y: pos.y - 210 }}
-      transition={{ type: "spring", stiffness: 60, damping: 22, mass: 0.6 }}
     />
   );
 }
